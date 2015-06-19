@@ -3,14 +3,16 @@ define("SUMMETA","<!--this is the first view page created at ".date("Y-m-d H:i:s
 
  $kv = new SaeKV();
  $kv->init();
+ 	if($_GET['s']){
+ 		$url = $_SERVER['SCRIPT_URI'].'?s='.$_GET['s'];
+ 		echo fetchUrl($url);
+ 		exit;
+ 	}
  	$sitemap = $kv->get($_SERVER['SCRIPT_URI'].'index.html');
  	if ($sitemap) {
  		header('Content-type:text/html; charset=utf-8');
-
   		echo $sitemap;
  	}else{
- 		//echo "111111111111";
- 		//echo $_SERVER['SCRIPT_URI'];
  		echo fetchUrl($_SERVER['SCRIPT_URI']).SUMMETA;
  	}
  
